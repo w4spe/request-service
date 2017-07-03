@@ -10,12 +10,13 @@ $ npm i -S @w4spe/request-service
 
 ## Requirements
 
-All functions set a bearer token by default, you must add `BEARER_TOKEN` to your environment variables.
+All functions set a bearer token by default, you must add `BEARER_TOKEN` to
+your environment variables or pass it as argument when requiring the module.
 
 ## Asynchronous example
 
 ~~~ js
-const requestService = require('@w4spe/requestService');
+const requestService = require('@w4spe/requestService')();
 
 async function doSomething (data) {
   // Result contains the returned value by the API.
@@ -28,7 +29,7 @@ async function doSomething (data) {
 ## Synchronous example
 
 ~~~ js
-const requestService = require('@w4spe/requestService');
+const requestService = require('@w4spe/requestService')();
 
 function doSomething (data) {
   // Result contains the returned value by the API.
