@@ -5,43 +5,43 @@ const encodeUrl = require('encodeurl');
 const request = require('request');
 const rp = require('request-promise');
 
-async function get (url, data = null, isJson = true, useToken = true) {
-  return await ajax('GET', url, data, isJson, useToken);
+async function get (url, data = null, isJSON = true, useToken = true) {
+  return await ajax('GET', url, data, isJSON, useToken);
 }
 
-function getSync (url, data = null, isJson = true, useToken = true) {
-  return ajaxSync('GET', url, data, isJson, useToken);
+function getSync (url, data = null, isJSON = true, useToken = true) {
+  return ajaxSync('GET', url, data, isJSON, useToken);
 }
 
-async function post (url, data = null, isJson = true, useToken = true) {
-  return await ajax('POST', url, data, isJson, useToken);
+async function post (url, data = null, isJSON = true, useToken = true) {
+  return await ajax('POST', url, data, isJSON, useToken);
 }
 
-function postSync (url, data = null, isJson = true, useToken = true) {
-  return ajaxSync('POST', url, data, isJson, useToken);
+function postSync (url, data = null, isJSON = true, useToken = true) {
+  return ajaxSync('POST', url, data, isJSON, useToken);
 }
 
-async function update (url, data = null, isJson = true, useToken = true) {
-  return await ajax('PUT', url, data, isJson, useToken);
+async function update (url, data = null, isJSON = true, useToken = true) {
+  return await ajax('PUT', url, data, isJSON, useToken);
 }
 
-function updateSync (url, data = null, isJson = true, useToken = true) {
-  return ajaxSync('PUT', url, data, isJson, useToken);
+function updateSync (url, data = null, isJSON = true, useToken = true) {
+  return ajaxSync('PUT', url, data, isJSON, useToken);
 }
 
-async function _delete (url, data = null, isJson = true, useToken = true) {
-  return await ajax('DELETE', url, data, isJson, useToken);
+async function _delete (url, data = null, isJSON = true, useToken = true) {
+  return await ajax('DELETE', url, data, isJSON, useToken);
 }
 
-function deleteSync (url, data = null, isJson = true, useToken = true) {
-  return ajaxSync('DELETE', url, data, isJson, useToken);
+function deleteSync (url, data = null, isJSON = true, useToken = true) {
+  return ajaxSync('DELETE', url, data, isJSON, useToken);
 }
 
-async function ajax (method, url, data = null, isJson = true, useToken = true) {
-  const options = getOptions(method, url, data, isJson, useToken);
+async function ajax (method, url, data = null, isJSON = true, useToken = true) {
+  const options = getOptions(method, url, data, isJSON, useToken);
 
   const response = await rp(options);
-  if (isJson) {
+  if (isJSON) {
     return response;
   } else {
     try {
@@ -52,13 +52,13 @@ async function ajax (method, url, data = null, isJson = true, useToken = true) {
   }
 }
 
-function ajaxSync (method, url, data = null, isJson = true, useToken = true) {
-  const options = getOptions(method, url, data, isJson, useToken);
+function ajaxSync (method, url, data = null, isJSON = true, useToken = true) {
+  const options = getOptions(method, url, data, isJSON, useToken);
 
   try {
     const response = _ajaxSync(options);
 
-    if (isJson) {
+    if (isJSON) {
       return response;
     } else {
       try {
@@ -77,17 +77,17 @@ function ajaxSync (method, url, data = null, isJson = true, useToken = true) {
   }
 }
 
-function getOptions (method, url, data = null, isJson = true, useToken = true) {
+function getOptions (method, url, data = null, isJSON = true, useToken = true) {
   const options = {
     method: method,
     uri: encodeUrl(url),
-    json: isJson
+    json: isJSON
   };
 
-  if (data !== null && isJson) {
+  if (data !== null && isJSON) {
     // Json data.
     options.body = data;
-  } else if (data !== null && !isJson) {
+  } else if (data !== null && !isJSON) {
     // URL-encoded forms.
     options.form = data;
   }
